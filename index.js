@@ -24,8 +24,40 @@ const getLeetString = (string) => {
 			convertedString = modifiedString
 		}
 	})
-
-	console.log(convertedString)
+	console.log("L33T String => ", convertedString)
 }
 
-module.exports = getLeetString(regularString)
+
+
+const repeatingString = "aaabbdcccccf"
+
+const getFormattedRepeatingString = (string) => {
+	let allLetters = string.split("")
+	let lastLetter = null
+	let index = -1
+
+	let letterCluster = []
+	// [["a", "a", "a"], ["b","b"]]
+	allLetters.forEach(letter => {
+		if (lastLetter !== letter) {
+			lastLetter = letter
+			index++
+			letterCluster.push([letter])
+		} else {
+			letterCluster[index].push(letter)
+		}
+	})
+
+
+	let convertedString = ""
+	letterCluster.forEach(letterGroup => {
+		convertedString = convertedString+`${letterGroup[0]}${letterGroup.length}`
+	})
+
+	console.log("REPEATING STRING => ",convertedString)
+}
+
+module.exports = [
+	getLeetString(regularString),
+	getFormattedRepeatingString(repeatingString),
+]
